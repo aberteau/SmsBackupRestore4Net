@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>SmsBackupRestore4Net.Xml</AssemblyName>
+    <RootNamespace>SmsBackupRestore4Net.Xml</RootNamespace>
+  </PropertyGroup>
+
+</Project>
