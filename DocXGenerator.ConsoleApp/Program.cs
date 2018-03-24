@@ -45,12 +45,12 @@ namespace SmsBackupRestore4Net.DocXGenerator.ConsoleApp
                 return;
             }
 
-            Console.WriteLine($"The files will be generated in folder '{outputPath}'");
+            Console.WriteLine($"The docx file will be generated in folder '{outputPath}'");
             Console.WriteLine("Press [Enter] key to generate files");
             Console.ReadLine();
 
             Console.WriteLine();
-            Console.WriteLine($"Generating files in folder '{outputPath}' ...");
+            Console.WriteLine($"Generating docx file in folder '{outputPath}' ...");
 
             DocXHelper.CreateDocX(messageXmlFilepath, outputPath);
 
@@ -68,5 +68,4 @@ namespace SmsBackupRestore4Net.DocXGenerator.ConsoleApp
             p.WriteOptionDescriptions(Console.Out);
         }
     }
-}
 }
