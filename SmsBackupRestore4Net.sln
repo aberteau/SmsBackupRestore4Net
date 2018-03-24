@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xml", "Xml\Xml.csproj", "{7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocXGenerator", "DocXGenerator\DocXGenerator.csproj", "{6AD04006-FABB-43C0-A7F9-5F5162BE83B2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocXGenerator.ConsoleApp", "DocXGenerator.ConsoleApp\DocXGenerator.ConsoleApp.csproj", "{5E9B8DD7-3DBD-4371-9B1C-A575221F1B8E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6AD04006-FABB-43C0-A7F9-5F5162BE83B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AD04006-FABB-43C0-A7F9-5F5162BE83B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6AD04006-FABB-43C0-A7F9-5F5162BE83B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E9B8DD7-3DBD-4371-9B1C-A575221F1B8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E9B8DD7-3DBD-4371-9B1C-A575221F1B8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E9B8DD7-3DBD-4371-9B1C-A575221F1B8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E9B8DD7-3DBD-4371-9B1C-A575221F1B8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
