@@ -9,6 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocXGenerator.ConsoleApp", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocXGenerator", "DocXGenerator\DocXGenerator.csproj", "{1FA6E9E4-AB5E-4D9E-8083-68C78335958F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E69C34D9-0756-4D9E-A98D-FE738E66AFE4}"
+	ProjectSection(SolutionItems) = preProject
+		createPackages.bat = createPackages.bat
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
