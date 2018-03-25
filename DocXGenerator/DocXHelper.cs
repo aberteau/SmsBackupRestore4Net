@@ -17,7 +17,8 @@ namespace SmsBackupRestore4Net.DocXGenerator
         private static readonly Color SentMessageColor = Color.Orange;
 
         private const int MessageLayoutCellMarginBottom = 10;
-        private const int MessageCellWidth = 350;
+        private const int MessageCellWidth = 300;
+        private const int LayoutTableColumnWidth = 400;
         private const int MessageBodyFontSize = 10;
         private const int MessageDateFontSize = 8;
 
@@ -47,6 +48,8 @@ namespace SmsBackupRestore4Net.DocXGenerator
         {
             int rowCount = dtos.Count();
             Table layoutTable = document.AddTable(rowCount, 1);
+            layoutTable.Alignment = Alignment.center;
+            layoutTable.SetWidths(new float[]{ LayoutTableColumnWidth });
             int i = 0;
             Border border = new Border(BorderStyle.Tcbs_none, BorderSize.one, 1, Color.Transparent);
             layoutTable.SetBorder(TableBorderType.Bottom, border);
