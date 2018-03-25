@@ -9,7 +9,7 @@ namespace SmsBackupRestore4Net.Xml
     {
         public static IEnumerable<PhoneShortMessage> GetMessages(string xmlDoc)
         {
-            XDocument xDoc = XDocument.Parse(xmlDoc);
+            XDocument xDoc = XDocument.Load(xmlDoc);
             IEnumerable<XElement> messageElements = xDoc.Root.Elements("sms");
             return messageElements.Select(e => Map(e));
         }
