@@ -5,28 +5,28 @@ using System.Xml.Linq;
 
 namespace SmsBackupRestore4Net.Xml
 {
-    public class PhoneShortMessageXmlHelper
+    public class ShortMessageXmlHelper
     {
-        public static IEnumerable<PhoneShortMessage> GetMessages(string xmlDoc)
+        public static IEnumerable<ShortMessage> GetMessages(string xmlDoc)
         {
             XDocument xDoc = XDocument.Load(xmlDoc);
             IEnumerable<XElement> messageElements = xDoc.Root.Elements("sms");
             return messageElements.Select(e => Map(e));
         }
 
-        private static PhoneShortMessage Map(XElement messageElement)
+        private static ShortMessage Map(XElement messageElement)
         {
-            PhoneShortMessage phoneCall = new PhoneShortMessage();
-            phoneCall.Number = GetNumber(messageElement);
-            phoneCall.Type = GetType(messageElement);
-            phoneCall.Date = GetDate(messageElement);
-            phoneCall.Subject = GetSubject(messageElement);
-            phoneCall.Body = GetBody(messageElement);
-            phoneCall.SentDate = GetSentDate(messageElement);
-            phoneCall.IsRead = GetIsRead(messageElement);
-            phoneCall.Status = GetStatus(messageElement);
-            phoneCall.CachedName = GetCachedName(messageElement);
-            return phoneCall;
+            ShortMessage call = new ShortMessage();
+            call.Number = GetNumber(messageElement);
+            call.Type = GetType(messageElement);
+            call.Date = GetDate(messageElement);
+            call.Subject = GetSubject(messageElement);
+            call.Body = GetBody(messageElement);
+            call.SentDate = GetSentDate(messageElement);
+            call.IsRead = GetIsRead(messageElement);
+            call.Status = GetStatus(messageElement);
+            call.CachedName = GetCachedName(messageElement);
+            return call;
         }
 
         private static String GetNumber(XElement messageElement)

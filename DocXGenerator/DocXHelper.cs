@@ -22,7 +22,7 @@ namespace SmsBackupRestore4Net.DocXGenerator
         private const int MessageBodyFontSize = 10;
         private const int MessageDateFontSize = 8;
 
-        private static DocX CreateDocX(string fileName, IEnumerable<PhoneShortMessage> messages)
+        private static DocX CreateDocX(string fileName, IEnumerable<ShortMessage> messages)
         {
             DocX document = DocX.Create(fileName);
             document.PageLayout.Orientation = Orientation.Portrait;
@@ -32,22 +32,22 @@ namespace SmsBackupRestore4Net.DocXGenerator
 
         public static void CreateDocX(string messageXmlFilepath, string outputPath)
         {
-            IEnumerable<PhoneShortMessage> messages = PhoneShortMessageXmlHelper.GetMessages(messageXmlFilepath);
+            IEnumerable<ShortMessage> messages = ShortMessageXmlHelper.GetMessages(messageXmlFilepath);
             DocX docX = CreateDocX(outputPath, messages);
             docX.Save();
         }
 
 
-        private static void SetContent(DocX document, IEnumerable<PhoneShortMessage> messages)
+        private static void SetContent(DocX document, IEnumerable<ShortMessage> messages)
         {
             Table t = AddTable(messages, document);
             document.InsertTable(t);
         }
 
-        private static Table AddTable(IEnumerable<PhoneShortMessage> dtos, DocX document)
+        private static Table AddTable(IEnumerable<ShortMessage> messages, DocX document)
         {
-            int rowCount = dtos.Count();
-            Table layoutTable = document.AddTable(rowCount, 1);
+            int msgCount = messages.Count();
+            Table layoutTable = document.AddTable(msgCount, 1);
             layoutTable.Alignment = Alignment.center;
             layoutTable.SetWidths(new float[]{ LayoutTableColumnWidth });
             int i = 0;
@@ -59,9 +59,9 @@ namespace SmsBackupRestore4Net.DocXGenerator
             layoutTable.SetBorder(TableBorderType.InsideH, border);
             layoutTable.SetBorder(TableBorderType.InsideV, border);
 
-            foreach (PhoneShortMessage dto in dtos)
+            foreach (ShortMessage message in messages)
             {
-                Alignment alignment = GetAlignment(dto.Type);
+                Alignment alignment = GetAlignment(message.Type);
 
                 Cell messageLayoutCell = layoutTable.Rows[i].Cells[0];
 
@@ -69,27 +69,27 @@ namespace SmsBackupRestore4Net.DocXGenerator
                 messageLayoutCell.RemoveParagraph(firstParagraph);
 
                 messageLayoutCell.MarginBottom = MessageLayoutCellMarginBottom;
-                FillMessageLayoutCell(messageLayoutCell, alignment, dto);
+                FillMessageLayoutCell(messageLayoutCell, alignment, message);
 
                 i++;
             }
             return layoutTable;
         }
 
-        private static void FillMessageLayoutCell(Cell messageLayoutCell, Alignment alignment, PhoneShortMessage dto)
+        private static void FillMessageLayoutCell(Cell messageLayoutCell, Alignment alignment, ShortMessage message)
         {
             Table messageTable = messageLayoutCell.InsertTable(1, 1);
             messageTable.Alignment = alignment;
 
             Cell messageCell = messageTable.Rows[0].Cells[0];
             messageCell.Width = MessageCellWidth;
-            messageCell.FillColor = GetColor(dto.Type);
+            messageCell.FillColor = GetColor(message.Type);
 
             Paragraph bodyParagraph = messageCell.Paragraphs.First();
-            bodyParagraph.Append(dto.Body);
+            bodyParagraph.Append(message.Body);
             bodyParagraph.FontSize(MessageBodyFontSize);
 
-            Paragraph dateParagraph = bodyParagraph.InsertParagraphAfterSelf($"{dto.Date}");
+            Paragraph dateParagraph = bodyParagraph.InsertParagraphAfterSelf($"{message.Date}");
             dateParagraph.Alignment = alignment;
             dateParagraph.FontSize(MessageDateFontSize);
         }
@@ -104,17 +104,17 @@ namespace SmsBackupRestore4Net.DocXGenerator
             return (typeId == 1) ? ReceivedMessageColor : SentMessageColor;
         }
 
-        public static MemoryStream GetDocXMemoryStream(string fileName, IEnumerable<PhoneShortMessage> dtos)
+        public static MemoryStream GetDocXMemoryStream(string fileName, IEnumerable<ShortMessage> messages)
         {
-            DocX document = CreateDocX(fileName, dtos);
+            DocX document = CreateDocX(fileName, messages);
             MemoryStream ms = new MemoryStream();
             document.SaveAs(ms);
             return ms;
         }
 
-        public static byte[] GetDocXBytes(string fileName, IEnumerable<PhoneShortMessage> dtos)
+        public static byte[] GetDocXBytes(string fileName, IEnumerable<ShortMessage> messages)
         {
-            MemoryStream memoryStream = GetDocXMemoryStream(fileName, dtos);
+            MemoryStream memoryStream = GetDocXMemoryStream(fileName, messages);
             byte[] byteArray = memoryStream.ToArray();
             return byteArray;
         }

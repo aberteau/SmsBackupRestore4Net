@@ -2,7 +2,7 @@
 
 namespace SmsBackupRestore4Net.Xml
 {
-    public class PhoneShortMessage
+    public class ShortMessage
     {
         public String Number { get; set; }
 
